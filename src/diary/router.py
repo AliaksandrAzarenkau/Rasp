@@ -12,11 +12,11 @@ router = APIRouter(
 )
 
 
-@router.get('/get')
+@router.get('/get', response_model=EventCreate)
 async def get_events(event_type: str, session: AsyncSession = Depends(get_async_session)):
     query = select(Event).where(Event.type == event_type)
     result = await session.execute(query)
-    return result.scalars().all()  #Переделать после добавления валидации
+    return result.all()  #Переделать после добавления валидации scalars().
 
 
 @router.post('/add_event')
