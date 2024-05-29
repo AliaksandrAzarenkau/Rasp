@@ -37,6 +37,9 @@ def get_keyboard():
 
 @dp.message(Command("start"))
 async def cmd_numbers(message: types.Message):
+    """
+    Send start message and transmit user data to user.post_user router
+    """
     user_id = str(message.from_user.id)
     username = str(message.from_user.username)
     await post_user(UserCreate(tg_id=user_id, name_tg=username), tg_flag=True)
